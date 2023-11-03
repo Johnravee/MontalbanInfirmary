@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gabarito', cursive;
+}
+
+
+header {
+    background-color: teal;
+}
+
+
+
+#tittle {
+    color: #ffff;
+    letter-spacing: 1px;
+}
+
+#profile {
+    width: 50px;
+    height: 50px;
+    margin-right: 5.1em;
+    cursor: pointer;
+}
+
+h3{
+    display: block;
+}
+
+
+#profileDisplay{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+
+}
+
+#profileDetails,#profileDiv{
+    border-radius: 5px;
+}
+

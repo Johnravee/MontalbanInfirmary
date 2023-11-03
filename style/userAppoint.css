@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gabarito', cursive;
+}
+
+
+
+
+
+header {
+    background-color: teal;
+}
+
+#backImg{
+    height: 50px;
+    width: 50px;
+}
+
+main{
+    height: auto;
+    min-height: auto;
+    width: 100%;
+}
+
+
+
+button{
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+#concerns{
+    resize: none;
+}
+
+#mark{
+    position: absolute;
+    top: 40%;
+    left: -10%;
+    height: auto;
+    width: auto;
+    opacity: .1;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
