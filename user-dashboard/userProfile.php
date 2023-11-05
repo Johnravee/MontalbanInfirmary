@@ -1,5 +1,6 @@
 <?php
 include_once("../database/adminDB.php");
+include_once("../Service/updateProfile.php");
 session_start();
 
 if (!isset($_SESSION['user'])){
@@ -34,13 +35,8 @@ try{
                 $location = $_POST["location"];
                 $muniBa = $_POST["muniBa"];
 
-                $updateInfo = "UPDATE accounts SET Surname = ?, Firstname =?, Middlename = ?, Email = ?, Contact = ?, Citizenship = ?, place = ?, Munipal_bara = ? WHERE id = $id ";
-                $prp = $conn->prepare($updateInfo);
-                $prp->bind_param('ssssssss',$surname, $firstname, $middlename, $email, $contact, $citizenship, $location, $muniBa);
-                if($prp->execute()){
-                    header("Refresh:0");
-                }
-              } 
+                updateUserProfile($conn,$id,$surname,$firstname,$middlename,$email,$contact,$citizenship,$location, $muniBa);
+            }
       }catch(Exception $e){
         echo $e->getMessage();
          } 
@@ -191,8 +187,6 @@ try{
 
         </form>
 
-
-        <!-- FORM -->
 
     </main>
 </body>

@@ -58,8 +58,8 @@ if(!isset($_SESSION['doctorName'])){
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <?php
+
+                <?php
                         $consultant = $_SESSION['DrSurname'];
                         $stmt = "SELECT * FROM appointments WHERE consultant = ?";
                         $stmt = $conn->prepare($stmt);
@@ -68,6 +68,7 @@ if(!isset($_SESSION['doctorName'])){
                         if($stmt->execute()){
                             $result = $stmt->get_result();
                             while($row = $result->fetch_assoc()){
+                                 echo '<tr>';
                                  echo '<td>'.$row['patient'].'</td>';
                                  echo '<td>'.$row['email'].'</td>';
                                  echo '<td>'.$row['contact'].'</td>';
@@ -75,17 +76,17 @@ if(!isset($_SESSION['doctorName'])){
                                  echo '<td>'.$row['consultant'].'</td>';
                                  echo '<td>'.$row['date_time'].'</td>';
                                  echo '<td>'.$row['reference_number'].'</td>';
-                                 echo '<td class ="badge bg-danger m-2">'.$row['payment_stat'].'</td>';
+                                 echo '<td class ="payment_stat badge bg-danger w-50 m-2">'.$row['payment_stat'].'</td>';
                                  echo '<td class ="stat bg-danger text-white m-2">'.$row['stat'].'</td>';
-                            }
-
-                           
-                            
+                                 echo '</tr>';
+                            }            
                         }
                     ?>
                 </tr>
             </tbody>
         </table>
+
+
     </main>
 </body>
 

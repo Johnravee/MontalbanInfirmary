@@ -80,7 +80,7 @@
         <nav class="navigation">
             <div class="box"></div>
             <ul class="proList w-100 p-2 list-group list-group-flush d-flex justify-content-center align-items-center">
-                <li class="list-group-item m-2 list-unstyled"><a href="#"
+                <li class="list-group-item m-2 list-unstyled"><a href="docProfile.php"
                         class="link-dark text-decoration-none">Profile</a>
                 </li>
                 <li class="list-group-item m-2 list-unstyled">

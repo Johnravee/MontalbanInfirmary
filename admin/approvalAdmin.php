@@ -66,7 +66,7 @@ if(!isset($_SESSION["adminName"])){
                 if (isset($_POST['submit'])) {
                     $id = $_POST['submit'];
 
-                    $stmt = "UPDATE appointments SET stat = 'Approved' WHERE id = '$id'";
+                    $stmt = "UPDATE appointments SET payment_stat = 'Paid' WHERE id = '$id'";
                     $stmt = $conn->query($stmt);
                     if($stmt){
                         echo "<script defer>
@@ -95,14 +95,14 @@ if(!isset($_SESSION["adminName"])){
                     <th scope="col">Ref No.</th>
                     <th scope="col">Payment</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Approve</th>
+                    <th scope="col">Paid</th>
             </thead>
             <tbody>
                 <?php
              //set Philippine timezone
              date_default_timezone_set('Asia/Manila');
              
-            $stmt = "SELECT * FROM appointments WHERE stat = 'Processing'";
+            $stmt = "SELECT * FROM appointments WHERE stat = 'Approve' AND payment_stat = 'Not Paid'";
             $result = $conn->query($stmt);
 
             //Iterate through every rows 
@@ -118,7 +118,7 @@ if(!isset($_SESSION["adminName"])){
                 echo "<td>". $row["reference_number"] ."</td>";
                 echo "<td class=' bg-danger '>". $row["payment_stat"] ."</td>";
                 echo "<td class=' bg-primary '>" . $row["stat"] . "</td>";
-                echo "<td><button type='submit' name='submit' value='" . $row["id"] . "' class='btn btn-success'>Approve</button></td>";
+                echo "<td><button type='submit' name='submit' value='" . $row["id"] . "' class='btn btn-success'>Paid</button></td>";
                 echo "</form>";
                 echo "</tr>";       
             }

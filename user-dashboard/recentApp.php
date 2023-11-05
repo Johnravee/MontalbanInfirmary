@@ -19,7 +19,7 @@
                         return;
                     }
 
-                    if(isset($_POST['delete'])){
+                    else if(isset($_POST['delete'])){
                         $id = $_POST['delete'];
                         $stmt = "DELETE FROM appointments WHERE id = $id";
                         $result = $conn->query($stmt);
@@ -73,9 +73,9 @@
 
             <?php 
                 //Select appoinments 
-                  $tableName = $_SESSION['firstname']." ".$_SESSION['surname'];
+                  $patientName = $_SESSION['firstname']." ".$_SESSION['surname'];
 
-                  $stmt = "SELECT * FROM appointments WHERE patient = '$tableName' ORDER BY id DESC";
+                  $stmt = "SELECT * FROM appointments WHERE patient = '$patientName' ORDER BY id DESC";
                   $result = $conn->query($stmt);
 
                  
@@ -96,15 +96,17 @@
                             </div>
                             </div> ';
                     echo '    <ul class="list-group list-group-flush">';
-                    echo '      <li class="list-group-item fw-bold">Consultant : '.$data["consultant"] . '</li>';
+                    echo '      <li class="list-group-item fw-bold">Consultant : DR. '.$data["consultant"] . '</li>';
                     echo '      <li class="list-group-item fw-bold dt">Date and Time : '.$data["date_time"] . '</li>';
                     echo '      <li class="list-group-item fw-bold">Patient : '.$data["patient"] . '</li>';
+                    echo '      <li class="list-group-item fw-bold">Ref No. : '.$data["reference_number"] . '</li>';
+                    echo '      <li class="list-group-item fw-bold">Payment Status : <span class ="badge bg-danger">'.$data["payment_stat"].'</span></li>';
                     echo '    </ul>';
                     echo '    <div class="card-body">';
                     echo '      <span class="card-text">Status : <span class ="badge" id="status">'.$data["stat"].'</span></span>';
                     echo '    </div>';
                    // Check if the status is 'Approved' to decide whether to display the delete button
-                    if ($data["stat"] === "Expired") {
+                    if ($data["stat"] === "Expired" || $data["stat"] === "Rejected") {
                         // Only display the delete button if the status is not 'Approved'
                         echo '<button type="submit" name="delete" value="' . $data["id"] . '" class="deleteBtn btn btn-danger">Delete</button>';
                     }else if($data['stat'] === "Processing"){
@@ -116,7 +118,8 @@
                     echo '  </div>';
                     echo '</div>';
                     echo '</form';
-
+                     $stmt = $conn->query('UPDATE appointments SET stat = "Expired" WHERE date_time < NOW()');
+                        
                     
                   }
             

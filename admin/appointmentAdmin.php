@@ -39,6 +39,7 @@ if(!isset($_SESSION["adminName"])){
 
     <main class="h-auto bg-dark w-100 bg-light d-flex justify-content-center align-items-center flex-column">
 
+        <!-- Pendings -->
         <div class="Pendings h-100 w-100 d-flex justify-content-start flex-column p-5 ">
             <div class="accordion-item show">
                 <h2 class="accordion-header" id="headingFour">
@@ -89,6 +90,7 @@ if(!isset($_SESSION["adminName"])){
 
 
 
+
         <!-- Approved -->
         <div class="Approved overflow-auto w-100 d-flex justify-content-start flex-column p-5">
             <div class="accordion-item">
@@ -111,12 +113,14 @@ if(!isset($_SESSION["adminName"])){
                                     <th scope="col">Concerns</th>
                                     <th scope="col">Consultant</th>
                                     <th scope="col">Date and Time</th>
+                                    <th scope="col">Ref. No</th>
+                                    <th scope="col">Payment Status</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-            $stmt = "SELECT * FROM appointments WHERE stat = 'Approved'";
+            $stmt = "SELECT * FROM appointments WHERE stat = 'Approved' AND payment_stat = 'Paid'";
             $result = $conn->query($stmt);
 
             while ($row = $result->fetch_assoc()) {
@@ -127,6 +131,8 @@ if(!isset($_SESSION["adminName"])){
               echo "<td>". $row["concerns"] ."</td>";
               echo "<td>". $row["consultant"] ."</td>";
               echo "<td>". $row["date_time"] ."</td>";
+              echo "<td>". $row["reference_number"] ."</td>";
+              echo "<td class='bg-success' >". $row["payment_stat"] ."</td>";
               echo "<td class='badge bg-success m-1'>". $row["stat"] ."</td>";
               echo "</tr>";
             }

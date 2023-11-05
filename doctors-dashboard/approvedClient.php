@@ -24,7 +24,7 @@ if(!isset($_SESSION['doctorName'])){
     <link rel="stylesheet" href="../style/header.css?v=<?php echo time() ?>">
 
     <!-- JS -->
-    <script defer src="../Javascript/appointmentChart.js?v=<?php echo time() ?>"></script>
+    <script defer src="../Javascript/approvedClientDoc.js?v=<?php echo time() ?>"></script>
 
     <!-- CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -42,7 +42,7 @@ if(!isset($_SESSION['doctorName'])){
     </header>
 
     <main class="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
-        <h2 class="text-dark p-5">Pending appointments</h2>
+        <h2 class="text-dark p-5">Appointments</h2>
         <table class="table w-75 text-center table-striped table-bordered">
             <thead>
                 <tr>
@@ -61,10 +61,11 @@ if(!isset($_SESSION['doctorName'])){
                 <tr>
                     <?php
                         $consultant = $_SESSION['DrSurname'];
-                        $pendings = "Approved";
-                        $stmt = "SELECT * FROM appointments WHERE consultant = ? AND stat = ?";
+                        $stats = "Approved";
+                        $paymentStat = "Paid";
+                        $stmt = "SELECT * FROM appointments WHERE consultant = ? AND stat = ? AND payment_stat = ?";
                         $stmt = $conn->prepare($stmt);
-                        $stmt->bind_param("ss", $consultant,$pendings);
+                        $stmt->bind_param("sss", $consultant, $stats, $paymentStat);
                         
                         if($stmt->execute()){
                             $result = $stmt->get_result();
@@ -76,7 +77,7 @@ if(!isset($_SESSION['doctorName'])){
                                  echo '<td>'.$row['consultant'].'</td>';
                                  echo '<td>'.$row['date_time'].'</td>';
                                  echo '<td>'.$row['reference_number'].'</td>';
-                                 echo '<td class ="badge bg-danger m-2">'.$row['payment_stat'].'</td>';
+                                 echo '<td class ="paymentStat badge bg-danger w-50 m-2">'.$row['payment_stat'].'</td>';
                                  echo '<td class ="stat bg-primary text-white m-2">'.$row['stat'].'</td>';
                             }
 

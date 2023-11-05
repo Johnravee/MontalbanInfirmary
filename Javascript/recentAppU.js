@@ -23,7 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
         stat.classList.remove("bg-primary");
         stat.classList.add("bg-danger");
         return
-         }        
+         } 
+         
+    if(stat.innerText === "Rejected"){
+        stat.classList.remove("bg-primary");
+        stat.classList.add("bg-danger");    
+        return
+    }
     })
 
 });

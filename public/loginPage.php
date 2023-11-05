@@ -7,6 +7,8 @@ if (isset($_SESSION['user'])) {
 }
 else if (isset($_SESSION['adminName'])) {
     header('location: ../admin/homepageAdmin.php');
+}else if(isset($_SESSION['doctorName'])) {
+    header('location: ../doctors-dashboard/docHomepage.php');
 }
 ?>
 <!DOCTYPE html>
@@ -141,7 +143,7 @@ else if (isset($_SESSION['adminName'])) {
 
                 <p style=" text-align: center;">Don't have an account? <a href="regPage.php">Register now</a></p>
                 <p style=" text-align: center;">
-                    <a style="font-size: 1.1em;" href="#">
+                    <a style="font-size: 1.1em;" href="forgotPassword.php">
                         Forgot password?
                     </a>
                 </p>
@@ -240,7 +242,7 @@ try {
         }
     }
 } catch (Exception $e) {
-    echo "Error";
+    echo "Error :". $e->getMessage();
 }
 
 
