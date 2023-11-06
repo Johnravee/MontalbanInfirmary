@@ -122,7 +122,7 @@ if(!isset($_SESSION['doctorName'])){
                         $result = $stmt->get_result();
 
                         while($row = $result->fetch_assoc()){
-                            
+                        
                             echo "<tr>";
                             echo "<form method='post'>";
                             echo "<td>" . $row["patient"] . "</td>";

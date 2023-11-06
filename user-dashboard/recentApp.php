@@ -100,13 +100,17 @@
                     echo '      <li class="list-group-item fw-bold dt">Date and Time : '.$data["date_time"] . '</li>';
                     echo '      <li class="list-group-item fw-bold">Patient : '.$data["patient"] . '</li>';
                     echo '      <li class="list-group-item fw-bold">Ref No. : '.$data["reference_number"] . '</li>';
-                    echo '      <li class="list-group-item fw-bold">Payment Status : <span class ="badge bg-danger">'.$data["payment_stat"].'</span></li>';
+                     if($data["payment_stat"] === "Paid"){
+                         echo '      <li class="list-group-item fw-bold">Payment Status : <span class ="badge bg-success">'.$data["payment_stat"].'</span></li>';
+                     }else{
+                         echo '      <li class="list-group-item fw-bold">Payment Status : <span class ="badge bg-danger">'.$data["payment_stat"].'</span></li>';
+                     }
                     echo '    </ul>';
                     echo '    <div class="card-body">';
                     echo '      <span class="card-text">Status : <span class ="badge" id="status">'.$data["stat"].'</span></span>';
                     echo '    </div>';
                    // Check if the status is 'Approved' to decide whether to display the delete button
-                    if ($data["stat"] === "Expired" || $data["stat"] === "Rejected") {
+                    if ($data["stat"] === "Expired" || $data["stat"] === "Rejected" || $data["stat"] === "Cancelled") {
                         // Only display the delete button if the status is not 'Approved'
                         echo '<button type="submit" name="delete" value="' . $data["id"] . '" class="deleteBtn btn btn-danger">Delete</button>';
                     }else if($data['stat'] === "Processing"){
@@ -118,7 +122,7 @@
                     echo '  </div>';
                     echo '</div>';
                     echo '</form';
-                     $stmt = $conn->query('UPDATE appointments SET stat = "Expired" WHERE date_time < NOW()');
+                    $stmt = $conn->query('UPDATE appointments SET stat = "Expired" WHERE date_time < NOW()');
                         
                     
                   }

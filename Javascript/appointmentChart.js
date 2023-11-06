@@ -4,7 +4,6 @@ const payment_stats = document.querySelectorAll(".payment_stat");
 
 
 stats.forEach(stat => {
- 
    stat.innerHTML === "Approved" ? (
     stat.classList.remove("bg-danger"),
     stat.classList.add("bg-success")

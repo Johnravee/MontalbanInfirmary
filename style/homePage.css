@@ -27,6 +27,15 @@ header{
     padding: 1.5em 2em;
 }
 
+.loginBtn{
+    margin-left: auto;
+    
+}
+
+.loginBtn > button{
+    letter-spacing: 1px;
+}
+
 #logo{
     width: 100px;
     height: 100px;

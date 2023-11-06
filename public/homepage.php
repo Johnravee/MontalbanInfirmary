@@ -11,6 +11,17 @@
 
     <link rel="icon" href="../Images/logo.png">
 
+    <!-- CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+
     <title>Montalban Infirmary</title>
 </head>
 
@@ -18,6 +29,9 @@
     <header>
         <a href="../public/homepage.php"><img src="../Images/logo.png" alt="Infirmary Logo" id="logo"></a>
         <h1 id="tittle">MONTALBAN INFIRMARY HOSPITAL</h1>
+
+        <a class="loginBtn" href="../public/loginPage.php"><button class="btn btn-light w-100 fs-5"
+                type="button">Login</button></a>
     </header>
 
     <main>
@@ -44,7 +58,7 @@
                 <div class="wrapper">
                     <div class="link">
                         <img src="../Images/DoctorsLink.png" alt="" id="linkImage">
-                        <a href="#" class="linkSite">
+                        <a href="findDoctors.php" class="linkSite">
                             Doctors
                         </a>
                     </div>

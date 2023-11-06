@@ -102,7 +102,7 @@ if(!isset($_SESSION["adminName"])){
              //set Philippine timezone
              date_default_timezone_set('Asia/Manila');
              
-            $stmt = "SELECT * FROM appointments WHERE stat = 'Approve' AND payment_stat = 'Not Paid'";
+            $stmt = "SELECT * FROM appointments WHERE stat = 'Approved' AND payment_stat = 'Not Paid'";
             $result = $conn->query($stmt);
 
             //Iterate through every rows 

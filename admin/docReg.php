@@ -155,6 +155,18 @@ if(!isset($_SESSION["adminName"])){
             </div>
 
             <div class="mb-3">
+                <label for="specialization" class="form-label">Specialization</label>
+                <input type="text" class="form-control" id="specialization" name="specialization" required>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="department" class="form-label">Department</label>
+                <input type="text" class="form-control" id="department" name="department" required>
+            </div>
+
+
+            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
@@ -213,6 +225,26 @@ if(!isset($_SESSION["adminName"])){
                 </script>";
 
                 unset($surName, $fName, $mName, $email, $contact, $citizen, $address, $municipal, $sex, $pass, $cpass);
+
+
+                try{
+                    $doctorsAccount = "SELECT * FROM accounts WHERE account_type = 'doctor' ORDER BY id DESC LIMIT 1";
+                    $query = $conn->query($doctorsAccount);
+                    $result = $query->fetch_assoc();
+                    
+                    if($result){
+                        $specialization = htmlspecialchars($_POST['specialization']);
+                        $department = htmlspecialchars($_POST['department']);
+                        $id = $result["id"];
+                        $stmt = $conn->prepare("INSERT INTO doctors_specialization (doctors_id, specialization, department) VALUES (?, ?, ?)");
+                        $stmt->bind_param("iss", $id, $specialization, $department);
+                        $stmt->execute();
+                    }
+                }catch(Exception $e){
+                    echo $e->getMessage();
+                }
+
+
         }else{
             echo "<script defer>
                 const createError = new bootstrap.Modal(document.querySelector('#createError'));
@@ -225,6 +257,12 @@ if(!isset($_SESSION["adminName"])){
     }catch(Exception $e){
         echo $e->getMessage();
     }
+
+     
+
+
+
+
 ?>
 
 </html>

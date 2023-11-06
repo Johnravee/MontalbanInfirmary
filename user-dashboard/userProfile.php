@@ -94,7 +94,7 @@ try{
                         $data = $select->fetch_assoc();
                           $image = $data['img'];
 
-                          // Open the image data as a file
+                          
                           $imageInfo = finfo_open(FILEINFO_MIME);
 
                      if ($imageInfo) {  

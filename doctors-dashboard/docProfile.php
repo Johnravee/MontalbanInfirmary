@@ -8,9 +8,17 @@ session_start();
         
 try{
                 $id = $_SESSION['id'];
-                $stmt = "SELECT * FROM accounts WHERE id = $id";
+                $stmt = "SELECT * 
+                    FROM accounts 
+                    INNER JOIN doctors_specialization 
+                    ON accounts.id = doctors_specialization.doctors_id 
+                    WHERE accounts.id = $id";
+
+
+
                 $stmt = $conn->query($stmt);
                 $row = $stmt->fetch_assoc();
+
 
 
 
@@ -51,7 +59,7 @@ try{
     <link rel="shortcut icon" href="../Images/logo.png" type="image/x-icon">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../style/userProfile.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="../style/docProfile.css?v=<?php echo time() ?>">
     <!-- JS -->
     <script defer src="../Javascript/userProfile.js?v=<?php echo time() ?>"></script>
 
@@ -69,12 +77,12 @@ try{
 
 </head>
 
-<body class="overflow-hidden">
-    <header class="d-flex justify-content-between align-items-center w-100 p-5">
+<body>
+    <header class=" d-flex justify-content-between align-items-center w-100 p-5">
         <h1 class="text-white" id="tittle">Profile</h1>
         <a href="docHomepage.php"><img src="../Images/back.png" alt="profile" id="profile"></a>
     </header>
-    <main class="h-100 w-100 bg-dark d-flex justify-content-around p-3">
+    <main class=" h-100 w-100 bg-dark d-flex justify-content-around p-3">
         <!-- FORM -->
 
         <form class="bg-dark  d-flex justify-content-evenly align-items-start flex-row h-100 w-100 "
@@ -92,7 +100,7 @@ try{
                         $data = $select->fetch_assoc();
                           $image = $data['img'];
 
-                          // Open the image data as a file
+                          
                           $imageInfo = finfo_open(FILEINFO_MIME);
 
                      if ($imageInfo) {  
@@ -173,6 +181,16 @@ try{
                     <label for="muniBa">Municipal/Baranggay</label>
                     <input type="text" class="inputDetail text-uppercase form-control" name="muniBa" id="muniBa"
                         value="<?php echo $row['Munipal_bara'] ?>" readonly />
+                </div>
+
+                <div class="p-2">
+                    <label class="control-label" for="specialization">Specialization</label>
+                    <input type="text" class="inputDetail text-uppercase form-control" name="specialization"
+                        id="specialization" value="<?php echo $row['specialization'] ?>" readonly disabled />
+
+                    <label for="department">Department</label>
+                    <input type="text" class="inputDetail text-uppercase form-control" name="department" id="department"
+                        value="<?php echo $row['department'] ?>" readonly disabled />
                 </div>
 
                 <div class="btn-group" role="group">
